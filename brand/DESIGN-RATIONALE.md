@@ -88,11 +88,14 @@ skill's numbers:
 
 - Cap height 580px on the 1024 canvas (≈57%, in the 55–62% monogram band);
   baseline zone y 207–787 with a ~15px visual-center lift.
-- Vertical stems 124px; horizontals 112px (horizontals read heavier than
-  verticals — cut thinner for equal apparent weight).
+- Vertical stems 124px, except the I's stem at 150px (a lone vertical needs
+  extra width for equal optical mass — the Adobe equal-mass rule);
+  horizontals 112px (horizontals read heavier than verticals — cut thinner
+  for equal apparent weight).
 - Per-letter optical balance: F shifted +8px right (open lower-right); I gets
-  I-beam caps for equal optical mass with its siblings; R's bowl overshoots
-  its siblings' right edge by 10px (curves must overshoot to look equal).
+  I-beam caps plus the wider stem for equal optical mass; R's bowl reaches
+  x=742, overshooting the flat right edges of E (x=732) by 10px and of the
+  right-shifted F (x=740) by 2px — curves must overshoot flats to look equal.
 - All four letters share one baseline and margin system so the home-row
   reads as typesetting: **F I R E**.
 - Full-bleed square masters — the system applies the mask (never pre-round).
