@@ -2,7 +2,7 @@
 
 - **Build the website** — framework choice (static site generator vs
   hand-rolled), landing page, per-app pages, GitHub Pages deploy. Blocked on:
-  final icon system in `brand/` (in progress 2026-08-11). See
+  ~~final icon system in `brand/`~~ DONE 2026-08-11. See
   `docs/mission.md` for the v1 acceptance shape.
 - **Custom domain** — decide whether/when to buy one; Pages supports adding it
   later with no restructuring.
