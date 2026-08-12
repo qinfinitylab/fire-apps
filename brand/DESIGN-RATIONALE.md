@@ -199,8 +199,9 @@ no user can interpret. `Export Tax Report (PDF)` (dark) sat directly above
    list the accent appears **only** in the leading SF Symbol — a uniform
    column of flame marks down the left edge.
 2. **Settings row icons use `AccentColor`, never `AccentFill`.** A thin
-   monochrome symbol behaves like text, and the vivid fill hue is 2.2:1 on
-   white in Realty and Biz.
+   monochrome symbol behaves like text, and the vivid fill hues fall below
+   the WCAG text-contrast gate in Realty and Biz (see the AccentFill table
+   above).
 3. **Row kind is signalled by a trailing glyph, never by colour:**
    `›` pushes a screen · nothing acts now (sheet, share, compose) ·
    `↗` leaves the app · grey value text is read-only status.
@@ -218,10 +219,10 @@ no user can interpret. `Export Tax Report (PDF)` (dark) sat directly above
    colour chips were considered and rejected: they need a chip palette
    Settings doesn't have. Revisit only if a future app needs one.
 8. **`foregroundStyle` on both `Label` slots is necessary but not
-   sufficient — the row also needs `.tint(.primary)`.** On iOS 26, a
-   `Button` inside a `List` still tints its whole label with the accent
-   unless the row itself also carries `.tint(.primary)` (device-verified
-   2026-08-12, iOS 26.5 simulator, FIRE Mileage).
+   sufficient — the row also needs `.tint(.primary)`.** Observed on iOS
+   26.5 (simulator, FIRE Mileage, 2026-08-12): a `Button` inside a `List`
+   still tints its whole label with the accent unless the row itself also
+   carries `.tint(.primary)`.
    - `.buttonStyle(.plain)` also stops the bleed but was rejected: it strips
      the row's system press-highlight, and it only works where applied — a
      per-call-site fix, the trap the shared primitive exists to avoid.
@@ -229,8 +230,9 @@ no user can interpret. `Export Tax Report (PDF)` (dark) sat directly above
      **disabled** `Button` row, while a disabled `NavigationLink` still
      greys correctly — the shared row type must read
      `@Environment(\.isEnabled)` and de-emphasise both slots itself. A real
-     regression, caught only by screenshotting the empty/disabled state;
-     two review rounds of enabled-only screenshots missed it.
+     regression, caught only by screenshotting the empty-data state (zero
+     vehicles, which is what disables those rows) — missed by review passes
+     that only screenshotted the enabled state.
    - None of this is testable from Swift Testing or XCTest — SwiftUI's
      resolved `foregroundStyle`/`tint` isn't inspectable. Device
      screenshots in both appearances, including the disabled state, are
