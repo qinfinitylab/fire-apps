@@ -233,11 +233,14 @@ no user can interpret. `Export Tax Report (PDF)` (dark) sat directly above
      regression, caught only by screenshotting the empty-data state (zero
      vehicles, which is what disables those rows) — missed by review passes
      that only screenshotted the enabled state.
-   - None of this is testable from Swift Testing or XCTest — SwiftUI's
-     resolved `foregroundStyle`/`tint` isn't inspectable. Device
-     screenshots in both appearances, including the disabled state, are
-     the only check; re-verify after any Xcode or iOS SDK bump touching
-     `List` or `Button`.
+   - SwiftUI's *resolved* `foregroundStyle`/`tint` is not inspectable from
+     Swift Testing or XCTest, so no assertion can read the colour back.
+     Verify by screenshot in both appearances, including the disabled
+     state, and re-verify after any Xcode or iOS SDK bump touching `List`
+     or `Button`. Capturing screenshots *is* automatable — `XCUIScreenshot`
+     is native — so a pixel-comparison regression test stays open to any
+     app that wants one; the suite hasn't built one only because the
+     comparison libraries are third-party.
    - Reference implementation: `Shared/SettingsRow.swift` in FIRE Mileage
      and FIRE Biz.
 
@@ -246,7 +249,12 @@ a Diagnostics screen) is designed but deferred to a follow-up spec. Two
 findings from its feasibility pass, recorded so they aren't re-derived:
 `NSPersistentCloudKitContainer` exposes no public queue depth, so a "pending
 changes" count cannot be built honestly; and SwiftData cannot toggle CloudKit
-at runtime without rebuilding the `ModelContainer`, so no in-app sync toggle.
+*seamlessly* at runtime — flipping it means tearing down and rebuilding the
+`ModelContainer`. That rules out a live toggle, not the feature itself: a
+preference that rebuilds the container (or asks for a relaunch) remains open
+to any app willing to own the rebuild. None has been built, and in Mileage
+the bar is higher than the ergonomics — switching sync environments there is
+a known cause of `Change Token Expired`.
 
 ## Website implications
 
