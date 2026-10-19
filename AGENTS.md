@@ -29,9 +29,3 @@ personal data.
 - Review PRs with the local `codex` CLI before merging (qinfinitylab repo — no
   auto Codex review).
 - Conventional Commits.
-
-## Skill routing
-
-- Icon/brand design work → `/app-icon-design` (once created), `/frontend-design`
-- Site visual design → `/design-consultation`, `/frontend-design`
-- Ship / open PR → `/ship`
